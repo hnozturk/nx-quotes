@@ -37,8 +37,8 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        yarn
-        yarn build api --prod
+        npm install
+        npm run build api --prod
       displayName: 'npm install, build and test'
 
     - task: ArchiveFiles@2
