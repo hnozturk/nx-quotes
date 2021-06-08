@@ -18,7 +18,7 @@ variables:
   environmentName: 'quotes-api'
 
   # Agent VM image name
-  vmImageName: 'default'
+  # vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
@@ -26,8 +26,8 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: $(vmImageName)
+    # pool:
+      # vmImage: $(vmImageName)
 
     steps:
     - task: NodeTool@0
@@ -61,8 +61,8 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
-    pool:
-      vmImage: $(vmImageName)
+    # pool:
+      # vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
