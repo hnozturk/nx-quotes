@@ -37,9 +37,8 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
+        yarn
+        yarn build api --prod
       displayName: 'npm install, build and test'
 
     - task: ArchiveFiles@2
@@ -77,4 +76,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'node dist/apps/api/main.js'
