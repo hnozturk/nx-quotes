@@ -4,6 +4,8 @@ import * as serverless from 'serverless-http';
 
 const app = express();
 
+const router = express.Router();
+
 const quotes: Quotes[] = [
   {
     text:
@@ -28,7 +30,7 @@ const quotes: Quotes[] = [
   },
 ];
 
-app.get('/api', (req, res) => {
+router.get('/', (req, res) => {
   res.send(quotes);
 });
 
@@ -37,6 +39,8 @@ app.get('/api', (req, res) => {
 //   console.log('Listening at http://localhost:' + port + '/api');
 // });
 // server.on('error', console.error);
+
+app.use('/.netlify/package/api', router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
