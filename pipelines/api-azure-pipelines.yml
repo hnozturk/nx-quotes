@@ -36,11 +36,15 @@ stages:
         versionSpec: '12.x'
       displayName: 'Install Node.js'
 
-    - script: |
-        npm install
-        npm run build api --prod
-      displayName: 'npm install, build and test'
-
+    # - script: |
+    #     npm install
+    #     npm run build api --prod
+    #   displayName: 'npm install, build and test'
+    - task: Npm@1
+      inputs:
+        command: 'install'
+      displayName: 'npm install'
+    
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
