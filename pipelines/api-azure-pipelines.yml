@@ -26,7 +26,8 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    # pool:
+    pool:
+      name: default
       # vmImage: $(vmImageName)
 
     steps:
@@ -61,7 +62,8 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
-    # pool:
+    pool:
+     name: default
       # vmImage: $(vmImageName)
     strategy:
       runOnce:
