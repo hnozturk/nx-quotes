@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 // });
 // server.on('error', console.error);
 
-app.use('/.netlify/package/api', router);
+app.use('/api', router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
