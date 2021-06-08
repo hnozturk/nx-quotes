@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Message } from '@quotes/api-interfaces';
+import { Quotes } from '@quotes/api-interfaces';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
+  const [quotes, setQuotes] = useState<Quotes[]>([{ text: '', author: ' ' }]);
 
   useEffect(() => {
     fetch('/api')
       .then((r) => r.json())
-      .then(setMessage);
+      .then((data) => setQuotes(data));
   }, []);
+
+  console.log(quotes);
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to quotes!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-          alt="Nx - Smart, Extensible Build Framework"
-        />
-      </div>
-      <div>{m.message}</div>
+      {quotes?.map((q) => (
+        <div style={{ textAlign: 'center' }}>
+          <h1>{q.text}</h1>
+          <p>{q.author}</p>
+        </div>
+      ))}
     </>
   );
 };

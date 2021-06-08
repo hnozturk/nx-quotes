@@ -1,3 +1,4 @@
-export interface Message {
-  message: string;
+export interface Quotes {
+  text: string;
+  author: string;
 }
