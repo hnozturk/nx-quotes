@@ -1,5 +1,6 @@
 import * as express from 'express';
-import {  Quotes } from '@quotes/api-interfaces';
+import { Quotes } from '@quotes/api-interfaces';
+import * as serverless from 'serverless-http';
 
 const app = express();
 
@@ -36,3 +37,6 @@ const server = app.listen(port, () => {
   console.log('Listening at http://localhost:' + port + '/api');
 });
 server.on('error', console.error);
+
+module.exports = app;
+module.exports.handler = serverless(app);
